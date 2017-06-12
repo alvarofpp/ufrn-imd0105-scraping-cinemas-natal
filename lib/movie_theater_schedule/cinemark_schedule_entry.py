@@ -24,10 +24,7 @@ class CinemarkScheduleEntry(MovieTheaterScheduleEntry):
 
     @property
     def content_rating(self):
-        title_tag = self.base_tag.select('h3.title > a')[0]
-        movie_url = 'https://www.cinemark.com.br' + title_tag.get('href')
-
-        movie_response = requests.get(movie_url)
+        movie_response = requests.get(self.movie_url)
         movie_soup = BeautifulSoup(movie_response.content, 'html.parser')
         detail_items = movie_soup.find_all('div', { 'class' : 'detail-title' })
 
@@ -39,6 +36,11 @@ class CinemarkScheduleEntry(MovieTheaterScheduleEntry):
     @property
     def movie_theater(self):
         return self.theater_name
+
+    @property
+    def movie_url(self):
+        title_tag = self.base_tag.select('h3.title > a')[0]
+        return 'https://www.cinemark.com.br' + title_tag.get('href')
 
     @property
     def room(self):

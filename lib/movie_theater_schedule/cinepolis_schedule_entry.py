@@ -18,6 +18,11 @@ class CinepolisScheduleEntry(MovieTheaterScheduleEntry):
         return self.theater_name
 
     @property
+    def movie_url(self):
+        tag = self.base_tag.find_all(href=re.compile('http://www.cinepolis.com.br/filmes/filme.php'))[0]
+        return tag.get('href').split('&cc=')[0]
+
+    @property
     def room(self):
         return self.base_tag.find_all('td')[0].text
 
@@ -39,4 +44,5 @@ class CinepolisScheduleEntry(MovieTheaterScheduleEntry):
 
     @property
     def title(self):
-        return self.base_tag.find_all(href=re.compile('http://www.cinepolis.com.br/filmes/filme.php'))[0].text
+        tag = self.base_tag.find_all(href=re.compile('http://www.cinepolis.com.br/filmes/filme.php'))[0]
+        return tag.text

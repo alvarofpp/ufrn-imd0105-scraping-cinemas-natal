@@ -8,31 +8,35 @@ class MovieTheaterScheduleEntry(object):
         self.theater_name = theater_name
 
     @abc.abstractproperty
-    def get_category(self):
+    def category(self):
         return 'set category property value'
 
     @abc.abstractproperty
-    def get_content_rating(self):
+    def content_rating(self):
         return 'set content_rating property value'
 
     @abc.abstractproperty
-    def get_movie_theater(self):
+    def movie_theater(self):
         return 'set movie_theater property value'
 
     @abc.abstractproperty
-    def get_room(self):
+    def movie_url(self):
+        return 'set movie_url property value'
+
+    @abc.abstractproperty
+    def room(self):
         return 'set room property value'
 
     @abc.abstractproperty
-    def get_schedules(self):
+    def schedules(self):
         return 'set schedules property value'
 
     @abc.abstractproperty
-    def get_tags(self):
+    def tags(self):
         return 'set tags property value'
 
     @abc.abstractproperty
-    def get_title(self):
+    def title(self):
         return 'set title property value'
 
     def get_dict(self):
@@ -40,6 +44,7 @@ class MovieTheaterScheduleEntry(object):
             'category': self.category,
             'content_rating': self.content_rating,
             'movie_theater': self.movie_theater,
+            'movie_url': self.movie_url,
             'room': self.room,
             'schedules': self.schedules,
             'tags': self.tags,
